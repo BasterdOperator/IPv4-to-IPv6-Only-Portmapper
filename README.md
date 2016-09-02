@@ -20,8 +20,8 @@ Uberspace unterstützt sowohl IPv4 als auch IPv6 und bietet sich damit als bridg
 __Annahmen__
 
 * Wir gehen davon aus, dass Dein Dienst zuhause bereits funktioniert  
-* Wir nehmen an, Du möchtest zuhause auf [SSH](https://de.wikipedia.org/wiki/Secure_Shell) Port 22 verbinden. Natürlich geht das ganze aber auch für OpenVPN (UDP Port 1194) .o.ä.!     
-* Deine Heim-Adresse  ist _zuhause.org_ bzw. ipv6 _[dead:beef:ca1f]_  
+* Wir nehmen an, Du möchtest zuhause auf [SSH](https://de.wikipedia.org/wiki/Secure_Shell) Port 22 verbinden. Natürlich geht das ganze aber auch für OpenVPN (UDP Port 1194) o.ä.!     
+* Deine Heim-Adresse  ist _zuhause.org_ bzw. IPv6 _[dead:beef:ca1f]_  
 * Dein Uberspace-Host heisst _Nutella_ , also nutella.uberspace.de
 
 __Einrichtung auf Deinem Uberspace__  
