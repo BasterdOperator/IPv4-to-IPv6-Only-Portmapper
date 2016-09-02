@@ -58,11 +58,11 @@ Das Installationsverzeichnis & das Archiv können jetzt weg:
 `rm -rf socat-2.0.0-b9`  
 `rm socat-2.0.0-b9.tar.gz`  
 
-Jetzt möchten wir das ganze noch als [Daemon](https://wiki.uberspace.de/system:daemontools) einrichten, damit es dauerhaft und automatisch läuft.  
+Jetzt möchten wir das ganze noch als [Daemon](https://wiki.uberspace.de/system:daemontools) einrichten, damit es dauerhaft und automatisch läuft. Der Daemon soll bin/socat mit den gewünschten Parametern starten, also den richtigen Ports und der Zieladresse.
 
-Wichtig: Im Folgenden statt _65324_ den Port eintragen, den das Uberspace-Script _Dir_ zugewiesen hat - und natürlich Deine richtige Zuhause-Adresse anstatt _zuhause.org_
+Wichtig: Im Folgenden also statt _65324_ den Port eintragen, den das Uberspace-Script _Dir_ zugewiesen hat - und natürlich Deine richtige Zuhause-Adresse anstatt _zuhause.org_
 
-Wir nutzen das Script "uberspace-setup-service" um einen Dienst Namens "socat" einzurichten:  
+Wir nutzen das Script "uberspace-setup-service" um das als Dienst Namens "socat" einzurichten:  
 `uberspace-setup-service socat ~/bin/socat TCP4-LISTEN:65324,fork TCP6:zuhause.org:22` 
 
 (Alternativ:Du könntest hier natürlich auch eine ipv6 Adresse angeben.. z.B. 
