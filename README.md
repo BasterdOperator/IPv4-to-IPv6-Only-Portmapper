@@ -48,7 +48,7 @@ In das Verzeichnis wechseln:
 `cd socat-2.0.0-b9`
 
 Kompilieren:  
-`configure --prefix=/home/$USER`  
+`./configure --prefix=/home/$USER`  
 `make`  
 `make install`
 
@@ -58,7 +58,12 @@ Das Installationsverzeichnis & das Archiv können jetzt weg:
 `rm -rf socat-2.0.0-b9`  
 `rm socat-2.0.0-b9.tar.gz`  
 
-Jetzt möchten wir das ganze noch als [Daemon](https://wiki.uberspace.de/system:daemontools) einrichten, damit es dauerhaft und automatisch läuft. Der Daemon soll bin/socat mit den gewünschten Parametern starten, also den richtigen Ports und der Zieladresse.
+Jetzt möchten wir das ganze noch als [Daemon](https://wiki.uberspace.de/system:daemontools) einrichten, damit es dauerhaft und automatisch läuft. 
+
+Allgemeine Service Einrichtung:    
+`uberspace-setup-svscan`
+
+Der Daemon soll bin/socat mit den gewünschten Parametern starten, also den richtigen Ports und der Zieladresse.
 
 Wichtig: Im Folgenden also statt _65324_ den Port eintragen, den das Uberspace-Script _Dir_ zugewiesen hat - und natürlich Deine richtige Zuhause-Adresse anstatt _zuhause.org_
 
