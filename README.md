@@ -1,6 +1,6 @@
 ![alt text](https://dashboard.uberspace.de/static/img/logo-trans-2012.png)
 
-# IPv4-to-IPv6-Only-Portmapper
+# IPv4 to IPv6 Only Portmapper
 ## Erreichen von IPv6-Diensten (z.B. DS-Lite, Unitymedia, Kabel BW) über IPv4  
 
 
@@ -28,7 +28,7 @@ __Annahmen__
 
 __Einrichtung auf Deinem Uberspace__  
 
-Zuerst brauchen wir einen offenen Port in der Firewall von Deinem Uberspace. Dafür haben die fleissigen [ubernauten](https://jonaspasche.com/app/about_us) ein script gebaut, welches uns einen [unprivilegierten Port](https://manual.uberspace.de/basics-ports.html) zuweist:
+Zuerst brauchen wir einen offenen Port in der Firewall von Deinem Uberspace. Dafür haben die fleissigen [ubernauten](https://uberspace.de/en/about/) ein script gebaut, welches uns einen [unprivilegierten Port](https://manual.uberspace.de/basics-ports.html) zuweist:
 
 `uberspace port add`
 
@@ -60,33 +60,38 @@ Das Installationsverzeichnis & das Archiv können jetzt weg:
 `rm -rf socat-2.0.0-b9`  
 `rm socat-2.0.0-b9.tar.gz`  
 
-Jetzt möchten wir das ganze noch als [Daemon](https://wiki.uberspace.de/system:daemontools) einrichten, damit es dauerhaft und automatisch läuft. 
+Jetzt möchten wir das ganze noch als [Daemon](https://manual.uberspace.de/daemons-supervisord.html) einrichten, damit es dauerhaft und automatisch läuft. 
 
-Allgemeine Service Einrichtung:    
-`uberspace-setup-svscan`
+Dazu erstellen wir zunächst eine ini Datei
+`nano ~/etc/services.d/socat.ini`
 
-Der Daemon soll bin/socat mit den gewünschten Parametern starten, also den richtigen Ports und der Zieladresse.
+mit folgendem Inhalt.
+Wichtig: Im Folgenden also statt _65324_ den Port eintragen, den das Uberspace-Script _Dir_ zugewiesen hat, ersetze `dein.uberspace.account` mit _Deinem_ User und ersetze _zuhause.org_ mit deiner richtigen Zuhause-Adresse (DNS Name oder IPv6 Adresse ([dead:beef:ca1f])). 
 
-Wichtig: Im Folgenden also statt _65324_ den Port eintragen, den das Uberspace-Script _Dir_ zugewiesen hat - und natürlich Deine richtige Zuhause-Adresse anstatt _zuhause.org_
+```
+[program:socat]
+command= /home/dein.uberspace.account/bin/socat tcp4-listen:65324 tcp6-connect:zuhause.org:22
+autostart=yes
+autorestart=yes
+```
+Der Daemon soll `~/bin/socat` mit den gewünschten Parametern starten, also den richtigen Ports und der Zieladresse.
 
-Wir nutzen das Script "uberspace-setup-service" um das als Dienst Namens "socat" einzurichten:  
-`uberspace-setup-service socat ~/bin/socat TCP4-LISTEN:65324,fork TCP6:zuhause.org:22` 
+Dann befehlen wir unserem Supervisor den Daemon einzurichten und su starten.
+```
+supervisorctl reread
+supervisorctl update
+```
+Der Dienst ist damit eingerichtet. Jetzt starten wir den ganzen Salat mit: 
+`supervisorctl start socat`
 
-(Alternativ:Du könntest hier natürlich auch eine ipv6 Adresse angeben.. z.B. 
-`uberspace-setup-service socat ~/bin/socat TCP4-LISTEN:65324,fork TCP6:[dead:beef:ca1f]:22`)
+Zukünftig können wir unseren Service also mit folgenden Kommandos starten, stoppen oder neustarten.
+```
+supervisorctl start socat
+supervisorctl stop socat
+supervisorctl restart socat
+``` 
 
-Antwort:  
-`Creating the ~/etc/run-socat/run service run script`  
-`Creating the ~/etc/run-socat/log/run logging run script` 
-`Symlinking ~/etc/run-socat to ~/service/socat to start the service` 
-`Waiting for the service to start ... 1 2 3 started!` 
-
-`Congratulations - the ~/service/socat service is now ready to use!`  
-
-Der Dienst ist damit eingerichtet. Jetzt starten wir den ganzen Salat mit:  
-`svc -u ~/service/socat`  
-
-Wir versichern uns noch , das der Dienst läuft mit:  
+Wir versichern uns noch , dass der Dienst läuft mit:  
 `ps aux | grep socat`  
 
 `..`   
