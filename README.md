@@ -26,12 +26,12 @@ __Annahmen__
 
 __Einrichtung auf Deinem Uberspace__  
 
-Zuerst brauchen wir einen offenen Port in der Firewall von Deinem Uberspace. Dafür haben die fleissigen [ubernauten](https://jonaspasche.com/app/about_us) ein script gebaut, welches uns einen [unprivilegierten Port](https://wiki.uberspace.de/system:ports) zuweist:
+Zuerst brauchen wir einen offenen Port in der Firewall von Deinem Uberspace. Dafür haben die fleissigen [ubernauten](https://jonaspasche.com/app/about_us) ein script gebaut, welches uns einen [unprivilegierten Port](https://manual.uberspace.de/basics-ports.html) zuweist:
 
-`uberspace-add-port -f -p tcp`
+`uberspace port add`
 
 Antwort:  
-`All good! Opened port 65324, tcp protocol(s).`  
+`Port 65324 will be open for TCP and UDP traffic in a few minutes.`  
 Bestens. Wir haben also Port _65324_ erhalten. Den merken wir uns. Du wirst sehr wahrscheinlich einen anderen erhalten.
 
 Wechsel in Dein Home-Verzeichnis:  
