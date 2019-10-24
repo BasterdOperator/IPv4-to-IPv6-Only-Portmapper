@@ -73,7 +73,7 @@ command= /home/dein.uberspace.account/bin/socat tcp4-listen:65324 tcp6-connect:z
 autostart=yes
 autorestart=yes
 ```
-Wichtig: Statt _65324_ den Port eintragen, den das Uberspace-Script _Dir_ zugewiesen hat, ersetze `dein.uberspace.account` mit _Deinem_ User und ersetze _zuhause.org_ mit deiner richtigen Zuhause-Adresse (DNS Name oder IPv6 Adresse ([dead:beef:ca1f])). 
+***Wichtig:*** Statt _65324_ den Port eintragen, den das Uberspace-Script _Dir_ zugewiesen hat, ersetze `dein.uberspace.account` mit _Deinem_ User und ersetze _zuhause.org_ mit deiner richtigen Zuhause-Adresse (DNS Name oder IPv6 Adresse ([dead:beef:ca1f])). 
 
 Der Daemon soll `~/bin/socat` mit den gewünschten Parametern starten, also den richtigen Ports und der Zieladresse.
 
