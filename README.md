@@ -32,8 +32,7 @@ Zuerst brauchen wir einen offenen Port in der Firewall von Deinem Uberspace. Daf
 
 `uberspace port add`
 
-bzw.:
-Um auf neueren Uberspace-Servern, um einen TCP Port zu öffnen:
+bzw. um auf neueren Uberspace-Servern, einen TCP Port zu öffnen:
 `uberspace-add-port -p tcp -f`
 oder für UDP:
 `uberspace-add-port -p udp -f`
