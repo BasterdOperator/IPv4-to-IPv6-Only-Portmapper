@@ -32,11 +32,18 @@ Zuerst brauchen wir einen offenen Port in der Firewall von Deinem Uberspace. Daf
 
 `uberspace port add`
 
+bzw.:
+Um auf neueren Uberspace-Servern, um einen TCP Port zu öffnen:
+`uberspace-add-port -p tcp -f`
+oder für UDP:
+`uberspace-add-port -p udp -f`
+
 Antwort:  
-`Port 65324 will be open for TCP and UDP traffic in a few minutes.`  
+`Port 65324 will be open for TCP and UDP traffic in a few minutes.` bzw `All good! Opened port 65324, tcp protocol(s)`
+
 Bestens. Wir haben also Port _65324_ erhalten. Den merken wir uns. Du wirst sehr wahrscheinlich einen anderen erhalten.
 
-Wechsel in Dein Home-Verzeichnis:  
+Wechsel nun in Dein Home-Verzeichnis:  
 `cd ~`  
 Jetzt SOCAT herunterladen:  
 `wget http://www.dest-unreach.org/socat/download/socat-2.0.0-b9.tar.gz`
@@ -54,8 +61,9 @@ Kompilieren:
 `make`  
 `make install`
 
-Wieder ins Home wechseln  
+Wieder ins Home wechseln:
 `cd ~`  
+
 Das Installationsverzeichnis & das Archiv können jetzt weg:  
 `rm -rf socat-2.0.0-b9`  
 `rm socat-2.0.0-b9.tar.gz`  
